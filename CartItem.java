@@ -1,31 +1,43 @@
-public class CartItem {
+public class CartItem implements Comparable{
 
   private String Name;
-  private String Desc;
-  private Integer Price;
+  private Integer Small;
+  private Integer Large;
 
   public CartItem() {
     Name = " ";
-    Desc = " ";
-    Price = 0;
+    Small = 0;
+    Large = 0;
   }
 
-  public CartItem(String Name, String Desc, Integer Price) {
+  public CartItem(String Name, Integer Small, Integer Large) {
     this.Name = Name;
-    this.Desc = Desc;
-    this.Price = Price;
+    this.Small = Small;
+    this.Large = Large;
   }
 
   public String getName(){
     return this.Name;
   }
 
-  public String getDesc(){
-    return this.Desc;
+  public String getSmallPrice(){
+    return this.Small;
   }
 
-  public Integer getPrice(){
-    return this.Price;
+  public Integer getLargePrice(){
+    return this.Large;
+  }
+
+  @Override
+  public boolean compareTo(CartItem objOne){
+    if (getName().equals(objOne.getName())){
+      if (getSmall().equals(objOne.getSmall())){
+        if (getLarge().equals(objOne.getLarge())){
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
 }

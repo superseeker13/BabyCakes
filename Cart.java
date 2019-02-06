@@ -2,42 +2,41 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Cart {
-  private HashMap<String, Integer> Contents;
-  private ArrayList<String> cartItems = new List<String>();
+  private HashMap<CartItem, Integer> Contents;
+  private ArrayList<CartItem> cartItems = new List<CartItem>();
 
   public Cart() {
-    Contents = new HashMap<String, Integer>();
+    Contents = new HashMap<CartItem, Integer>();
   }
 
   public Cart(int capacity) {
-    Contents = new HashMap<String, Integer>(capacity);
+    Contents = new HashMap<CartItem, Integer>(capacity);
   }
 
-  
-  public HashMap<String, Integer> getContents() {
-    return Contents;
+  public HashMap<CartItem, Integer> getContents() {
+    return Contents.clone();
   }
 
-  public ArrayList<String> getCartItems() {
-    return cartItems;
+  public ArrayList<CartItem> getCartItems() {
+    return cartItems.clone();
   }
 
   public void addToCart(CartItem item, int quanitity) {
     if (quanitity > 0) {
-      if (Contents.ContainsKey(item.getName())) {
-        changeItemsInCart(item.getName(), quanitity + Contents.get(item.getName()));
+      if (Contents.ContainsKey(item)) {
+        changeItemsInCart(item, quanitity + Contents.get(item));
       } else {
-        Contents.Add(item.getName(), quanitity);
+        Contents.Add(item, quanitity);
       }
     } else {
       System.println("Invaild Quanitity.\n");
     }
   }
 
-  public void changeItemsInCart(String itemName, int quanitity) {
+  public void changeItemsInCart(CartItem itemName, int quanitity) {
     if (quanitity > 0) {
-      if (Contents.ContainsKey(itemName)) {
-        Contents.put(itemName, quanitity);
+      if (Contents.ContainsKey(item)) {
+        Contents.put(item, quanitity);
       } else {
         System.println("Item is not in cart.\n");
       }
@@ -45,8 +44,8 @@ public class Cart {
     }
   }
 
-  public bool removeFromCart(String itemName) {
-    return Contents.Remove(itemName);
+  public bool removeFromCart(CartItem item) {
+    return Contents.Remove(item);
   }
 
 }
