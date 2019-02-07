@@ -1,8 +1,8 @@
-public class CartItem implements Comparable{
+public class CartItem{
 
-  private String Name;
-  private Integer Small;
-  private Integer Large;
+  protected String Name;
+  protected Integer Small;
+  protected Integer Large;
 
   public CartItem() {
     Name = " ";
@@ -20,7 +20,7 @@ public class CartItem implements Comparable{
     return this.Name;
   }
 
-  public String getSmallPrice(){
+  public Integer getSmallPrice(){
     return this.Small;
   }
 
@@ -28,11 +28,10 @@ public class CartItem implements Comparable{
     return this.Large;
   }
 
-  @Override
-  public boolean compareTo(CartItem objOne){
+  public boolean equals(CartItem objOne){
     if (getName().equals(objOne.getName())){
-      if (getSmall().equals(objOne.getSmall())){
-        if (getLarge().equals(objOne.getLarge())){
+      if (getSmallPrice().equals(objOne.getSmallPrice())){
+        if (getLargePrice().equals(objOne.getLargePrice())){
           return true;
         }
       }
